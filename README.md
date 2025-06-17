@@ -40,6 +40,9 @@ Add this font-awesome and CDN excel library as toolbar feature support.
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 ```
 --------------------------------------
+## Drag n Drop column
+![image](https://github.com/user-attachments/assets/9a88c3df-cf7f-4f23-88e2-811a8db25043)
+--------------------------------------
 ## Layout Setting
 ![image](https://github.com/user-attachments/assets/e70af0f1-e95f-4fba-842a-9fc440fdc69f)
 --------------------------------------
