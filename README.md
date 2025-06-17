@@ -2,11 +2,17 @@
 The .smart-table class is used to create a user-friendly and easy-to-use report table display. Just by adding class = "smart-table" to the &lt;table> tag you can use it. Such as drag and drop columns, show or hide columns, filter data per column, and export to excel.
 ![image](https://github.com/user-attachments/assets/9a2ff198-dbdc-4d32-ba90-1a478cbca768)
 --------------------------------------
-**Layout Setting**
+## Layout Setting
 ![image](https://github.com/user-attachments/assets/e70af0f1-e95f-4fba-842a-9fc440fdc69f)
 --------------------------------------
-**Column Filter**
+## Column Filter
 ![image](https://github.com/user-attachments/assets/c5f47a6c-eedc-4ffb-859c-38a402059427)
 --------------------------------------
-**Export to Excel**
+## Sort Table
+![image](https://github.com/user-attachments/assets/dc122971-da0a-43f2-89e3-6f538eeae30e)
+--------------------------------------
+## Row hover color
+![image](https://github.com/user-attachments/assets/1fdcb27b-f179-4f69-b1f6-582d9cb87bd5)
+--------------------------------------
+## Export to Excel
 Automatic download existing table (Download.xslx)
