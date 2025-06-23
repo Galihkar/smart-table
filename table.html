@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Table Drag, Drop & Sort</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <link href="file:///D:/smart-table.css" rel="stylesheet">
+  <script src="file:///D:/smart-table.js"></script>
+<!--   <style>
+    tbody tr:hover {
+      background-color: #efefef;
+    }
+    .scrollable-table thead th:hover {
+      background-color: #80b5c9;
+    }
+    .scrollable-table {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: auto;
+      position: relative;
+      max-height: 515px;
+      min-width: 800px;
+    }
+    /* Sticky header */
+    .scrollable-table thead th {
+      position: sticky;
+      top: 0;
+      background-color: #9cc7d7;
+      z-index: 100;
+    }
+    .scrollable-table th,
+    .scrollable-table td {
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    #filterRow{
+      display: none;
+    }
+    #filterRow input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 4px 6px;
+      font-size: 13px;
+    }
+    /* Optional: styling tambahan untuk tabel */
+    #myTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    #myTable th, #myTable td {
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      user-select: none;
+    }
+    th.dragging {
+      opacity: 0.5;
+    }
+    th.sort-icon {
+      margin-left: 6px;
+    }
+    .sort-icon {
+      margin-left: 6px;
+    }
+    .table-toolbar .toolbar-section {
+      position: relative;
+      display: inline-block;
+    }
+    tbody td {
+      min-width: 170px;
+    }
+    /* Panel Dropdown Modular */
+    .dropdown-panel {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      padding: 10px;
+      z-index: 1000;
+      min-width: 160px;
+    }
+    #columnPanel label,
+    .dropdown-panel label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    /* Checkbox dalam Panel */
+    .dropdown-panel input[type="checkbox"] {
+      margin-right: 6px;
+    }
+    /* Tombol Toggle Dropdown */
+    .dropdown-toggle {
+      cursor: pointer;
+      background: #f8f9fa;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .dropdown-toggle {
+      cursor: pointer;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      color: #333;
+      margin-right: 8px;
+    }
+
+    .dropdown-toggle:hover {
+      background-color: #e9f5fc;
+      border-color: #93c5fd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-toggle i {
+      font-size: 18px;
+    }
+  </style>  -->
+</head>
+<body>
+  <table class="smart-table">
+    <thead>
+      <tr>
+        <th class="draggable sortable filterable">No</th>
+        <th class="draggable sortable filterable">NIK</th>
+        <th class="draggable sortable filterable">Nama</th>
+        <th class="draggable sortable filterable">Jenis Kelamin</th>
+        <th class="draggable sortable filterable">Tanggal Lahir</th>
+        <th class="draggable sortable filterable">Tempat Lahir</th>
+        <th class="draggable sortable filterable">Alamat</th>
+        <th class="draggable sortable filterable">Kota</th>
+        <th class="draggable sortable filterable">Provinsi</th>
+        <th class="draggable sortable filterable">Kode Pos</th>
+        <th class="draggable sortable filterable">Telepon</th>
+        <th class="draggable sortable filterable">Email</th>
+        <th class="draggable sortable filterable">Status</th>
+        <th class="draggable sortable filterable">Pendidikan Terakhir</th>
+        <th class="draggable sortable filterable">Sekolah</th>
+        <th class="draggable sortable filterable">Jurusan</th>
+        <th class="draggable sortable filterable">Tahun Masuk</th>
+        <th class="draggable sortable filterable">Tahun Lulus</th>
+        <th class="draggable sortable filterable">IPK</th>
+        <th class="draggable sortable filterable">Pekerjaan</th>
+      </tr>
+    </thead>
+<tbody>
+  <tr><td>1</td><td>3201010101010001</td><td>Andi Wijaya</td><td>Laki-laki</td><td>1990-01-15</td><td>Bandung</td><td>Jl. Melati No. 1</td><td>Bandung</td><td>Jawa Barat</td><td>40123</td><td>081234567890</td><td>andi@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Padjadjaran</td><td>Teknik Informatika</td><td>2008</td><td>2012</td><td>3.45</td><td>Programmer</td></tr>
+  <tr><td>2</td><td>3201010101010002</td><td>Siti Aminah</td><td>Perempuan</td><td>1992-03-20</td><td>Jakarta</td><td>Jl. Mawar No. 2</td><td>Jakarta</td><td>DKI Jakarta</td><td>10230</td><td>081298765432</td><td>siti@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Indonesia</td><td>Manajemen</td><td>2010</td><td>2014</td><td>3.80</td><td>Analis Bisnis</td></tr>
+  <tr><td>3</td><td>3201010101010003</td><td>Rudi Hartono</td><td>Laki-laki</td><td>1988-07-11</td><td>Surabaya</td><td>Jl. Kenanga No. 3</td><td>Surabaya</td><td>Jawa Timur</td><td>60292</td><td>081212345678</td><td>rudi@example.com</td><td>Menikah</td><td>S1</td><td>ITS Surabaya</td><td>Teknik Sipil</td><td>2006</td><td>2010</td><td>3.60</td><td>Kontraktor</td></tr>
+  <tr><td>4</td><td>3201010101010004</td><td>Lina Marlina</td><td>Perempuan</td><td>1995-05-30</td><td>Medan</td><td>Jl. Anggrek No. 4</td><td>Medan</td><td>Sumatera Utara</td><td>20111</td><td>082134567891</td><td>lina@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Sumatera Utara</td><td>Akuntansi</td><td>2013</td><td>2017</td><td>3.75</td><td>Akuntan</td></tr>
+  <tr><td>5</td><td>3201010101010005</td><td>Joko Santoso</td><td>Laki-laki</td><td>1991-09-25</td><td>Semarang</td><td>Jl. Cendana No. 5</td><td>Semarang</td><td>Jawa Tengah</td><td>50123</td><td>085634567890</td><td>joko@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Diponegoro</td><td>Ilmu Hukum</td><td>2009</td><td>2013</td><td>3.40</td><td>Pengacara</td></tr>
+  <tr><td>6</td><td>3201010101010006</td><td>Dewi Kusuma</td><td>Perempuan</td><td>1993-02-14</td><td>Yogyakarta</td><td>Jl. Teratai No. 6</td><td>Yogyakarta</td><td>DI Yogyakarta</td><td>55281</td><td>087823456789</td><td>dewi@example.com</td><td>Lajang</td><td>S2</td><td>UGM</td><td>Pendidikan</td><td>2011</td><td>2015</td><td>3.90</td><td>Dosen</td></tr>
+  <tr><td>7</td><td>3201010101010007</td><td>Budi Prasetyo</td><td>Laki-laki</td><td>1987-06-18</td><td>Bekasi</td><td>Jl. Flamboyan No. 7</td><td>Bekasi</td><td>Jawa Barat</td><td>17112</td><td>081923456780</td><td>budi@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Gunadarma</td><td>Sistem Informasi</td><td>2005</td><td>2009</td><td>3.50</td><td>IT Support</td></tr>
+  <tr><td>8</td><td>3201010101010008</td><td>Maria Kristina</td><td>Perempuan</td><td>1994-11-02</td><td>Manado</td><td>Jl. Dahlia No. 8</td><td>Manado</td><td>Sulawesi Utara</td><td>95112</td><td>085812345678</td><td>maria@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Sam Ratulangi</td><td>Psikologi</td><td>2012</td><td>2016</td><td>3.67</td><td>HRD</td></tr>
+  <tr><td>9</td><td>3201010101010009</td><td>Agus Salim</td><td>Laki-laki</td><td>1989-12-10</td><td>Makassar</td><td>Jl. Sawo No. 9</td><td>Makassar</td><td>Sulawesi Selatan</td><td>90231</td><td>082198765432</td><td>agus@example.com</td><td>Menikah</td><td>S2</td><td>Universitas Hasanuddin</td><td>Administrasi Publik</td><td>2007</td><td>2011</td><td>3.55</td><td>PNS</td></tr>
+  <tr><td>10</td><td>3201010101010010</td><td>Nur Aini</td><td>Perempuan</td><td>1996-08-22</td><td>Palembang</td><td>Jl. Nusa Indah No. 10</td><td>Palembang</td><td>Sumatera Selatan</td><td>30139</td><td>081345678912</td><td>nuraini@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Sriwijaya</td><td>Kedokteran</td><td>2014</td><td>2018</td><td>3.95</td><td>Dokter</td></tr>
+  <tr><td>11</td><td>3201010101010011</td><td>Hendra Kurniawan</td><td>Laki-laki</td><td>1990-04-17</td><td>Tangerang</td><td>Jl. Cemara No. 11</td><td>Tangerang</td><td>Banten</td><td>15111</td><td>081789012345</td><td>hendra@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Pelita Harapan</td><td>Desain Komunikasi Visual</td><td>2008</td><td>2012</td><td>3.60</td><td>Desainer Grafis</td></tr>
+  <tr><td>12</td><td>3201010101010012</td><td>Ayu Lestari</td><td>Perempuan</td><td>1993-10-05</td><td>Depok</td><td>Jl. Sakura No. 12</td><td>Depok</td><td>Jawa Barat</td><td>16411</td><td>082234567891</td><td>ayu@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Indonesia</td><td>Ilmu Komunikasi</td><td>2011</td><td>2015</td><td>3.85</td><td>Public Relations</td></tr>
+  <tr><td>13</td><td>3201010101010013</td><td>Fajar Pratama</td><td>Laki-laki</td><td>1985-01-20</td><td>Solo</td><td>Jl. Merpati No. 13</td><td>Solo</td><td>Jawa Tengah</td><td>57142</td><td>083134567890</td><td>fajar@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Sebelas Maret</td><td>Ekonomi</td><td>2003</td><td>2007</td><td>3.40</td><td>Wirausaha</td></tr>
+  <tr><td>14</td><td>3201010101010014</td><td>Melati Sari</td><td>Perempuan</td><td>1997-07-07</td><td>Pontianak</td><td>Jl. Rajawali No. 14</td><td>Pontianak</td><td>Kalimantan Barat</td><td>78123</td><td>085734567891</td><td>melati@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Tanjungpura</td><td>Ilmu Hukum</td><td>2015</td><td>2019</td><td>3.70</td><td>Legal Officer</td></tr>
+  <tr><td>15</td><td>3201010101010015</td><td>Rian Aditya</td><td>Laki-laki</td><td>1990-06-30</td><td>Bogor</td><td>Jl. Elang No. 15</td><td>Bogor</td><td>Jawa Barat</td><td>16128</td><td>081556789012</td><td>rian@example.com</td><td>Menikah</td><td>S1</td><td>IPB University</td><td>Agroteknologi</td><td>2008</td><td>2012</td><td>3.55</td><td>Petani Modern</td></tr>
+  <tr><td>16</td><td>3201010101010016</td><td>Salsa Maharani</td><td>Perempuan</td><td>1998-03-01</td><td>Padang</td><td>Jl. Belimbing No. 16</td><td>Padang</td><td>Sumatera Barat</td><td>25113</td><td>085612345678</td><td>salsa@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Andalas</td><td>Ilmu Sosial</td><td>2016</td><td>2020</td><td>3.90</td><td>Peneliti Sosial</td></tr>
+  <tr><td>17</td><td>3201010101010017</td><td>Tommy Gunawan</td><td>Laki-laki</td><td>1986-12-24</td><td>Batam</td><td>Jl. Durian No. 17</td><td>Batam</td><td>Kepulauan Riau</td><td>29432</td><td>082167890123</td><td>tommy@example.com</td><td>Menikah</td><td>S1</td><td>Politeknik Negeri Batam</td><td>Teknik Elektro</td><td>2004</td><td>2008</td><td>3.35</td><td>Teknisi</td></tr>
+  <tr><td>18</td><td>3201010101010018</td><td>Ani Septiani</td><td>Perempuan</td><td>1992-09-09</td><td>Palangkaraya</td><td>Jl. Rambutan No. 18</td><td>Palangkaraya</td><td>Kalimantan Tengah</td><td>73112</td><td>085790123456</td><td>ani@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Gadjah Mada</td><td>Antropologi</td><td>2010</td><td>2014</td><td>3.88</td><td>Dosen</td></tr>
+  <tr><td>19</td><td>3201010101010019</td><td>Denny Saputra</td><td>Laki-laki</td><td>1984-04-04</td><td>Cirebon</td><td>Jl. Jambu No. 19</td><td>Cirebon</td><td>Jawa Barat</td><td>45111</td><td>083456789012</td><td>denny@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Swadaya Gunung Jati</td><td>Teknik Mesin</td><td>2002</td><td>2006</td><td>3.50</td><td>Engineer</td></tr>
+  <tr><td>20</td><td>3201010101010020</td><td>Nina Rahmawati</td><td>Perempuan</td><td>1991-01-01</td><td>Banda Aceh</td><td>Jl. Manggis No. 20</td><td>Banda Aceh</td><td>Aceh</td><td>23111</td><td>085634789012</td><td>nina@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Syiah Kuala</td><td>Farmasi</td><td>2009</td><td>2013</td><td>3.92</td><td>Apoteker</td></tr>
+</tbody>
+  </table>
+
+<!-- <script>
+  class SmartTable {
+    constructor(table) {
+      this.table = table;
+      this.startIndex = null;
+      this.sortState = {};
+      this.init();
+    }
+
+    init() {
+      this.wrapTable();
+      this.injectToolbar();
+      this.enhanceHeaders();
+      this.generateCheckboxes();
+      this.initFilterEvents();
+      this.initDraggableHeaders();
+      this.bindToggleEvents();
+    }
+
+    wrapTable() {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper-with-toolbar';
+
+      const scrollable = document.createElement('div');
+      scrollable.className = 'scrollable-table';
+
+      this.table.parentNode.insertBefore(wrapper, this.table);
+      this.table.parentNode.removeChild(this.table);
+      scrollable.appendChild(this.table);
+      wrapper.appendChild(scrollable);
+    }
+
+    injectToolbar() {
+      const wrapper = this.table.closest('.table-wrapper-with-toolbar');
+      this.toolbar = document.createElement('div');
+      this.toolbar.className = 'table-toolbar';
+
+      // Column Panel
+      const columnSection = document.createElement('div');
+      columnSection.className = 'toolbar-section';
+      this.columnBtn = document.createElement('button');
+      this.columnBtn.className = 'dropdown-toggle';
+      this.columnBtn.innerHTML = '<i class="fa fa-table"></i>';
+      this.columnBtn.title = 'Layout Setting';
+      this.columnPanel = document.createElement('div');
+      this.columnPanel.className = 'dropdown-panel';
+      columnSection.appendChild(this.columnBtn);
+      columnSection.appendChild(this.columnPanel);
+
+      // Filter Panel
+      const filterSection = document.createElement('div');
+      filterSection.className = 'toolbar-section';
+      this.filterBtn = document.createElement('button');
+      this.filterBtn.className = 'dropdown-toggle';
+      this.filterBtn.innerHTML = '<i class="fa fa-filter"></i>';
+      this.filterBtn.title = 'Column Filter';
+      filterSection.appendChild(this.filterBtn);
+
+      this.toolbar.appendChild(columnSection);
+      this.toolbar.appendChild(filterSection);
+
+      const scrollable = wrapper.querySelector('.scrollable-table');
+      wrapper.insertBefore(this.toolbar, scrollable);
+    }
+
+    enhanceHeaders() {
+      const headerRow = this.table.querySelector('thead tr');
+      const headers = headerRow.querySelectorAll('th');
+
+      headers.forEach((th) => {
+        if (th.classList.contains('sortable')) {
+          const icon = document.createElement('i');
+          icon.className = 'sort-icon fas';
+          th.appendChild(icon);
+        }
+        if (th.classList.contains('draggable')) {
+          th.setAttribute('draggable', true);
+        }
+      });
+
+      if (!this.table.querySelector('#filterRow')) {
+        const filterRow = document.createElement('tr');
+        filterRow.id = 'filterRow';
+        headers.forEach((th) => {
+          const td = document.createElement('td');
+          if (th.classList.contains('filterable')) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = th.textContent.trim();
+            td.appendChild(input);
+          }
+          filterRow.appendChild(td);
+        });
+        headerRow.parentNode.appendChild(filterRow);
+      }
+    }
+
+    generateCheckboxes() {
+      this.columnPanel.innerHTML = '';
+      const headers = Array.from(this.table.querySelectorAll('thead th'));
+
+      headers.forEach((th, index) => {
+        const labelText = th.textContent.trim() || `Kolom ${index + 1}`;
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = true;
+        checkbox.dataset.col = index;
+
+        checkbox.addEventListener('change', () => {
+          const colIndex = parseInt(checkbox.dataset.col);
+          const isChecked = checkbox.checked;
+          for (const row of this.table.rows) {
+            const cell = row.cells[colIndex];
+            if (cell) cell.style.display = isChecked ? '' : 'none';
+          }
+        });
+
+        const label = document.createElement('label');
+        label.style.marginRight = '10px';
+        label.appendChild(checkbox);
+        label.append(" " + labelText);
+        this.columnPanel.appendChild(label);
+      });
+    }
+
+    initFilterEvents() {
+      const filterRow = this.table.querySelector('#filterRow');
+      if (!filterRow) return;
+
+      const inputs = filterRow.querySelectorAll('input');
+      const rows = this.table.querySelectorAll('tbody tr');
+
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+          const filters = Array.from(inputs).map(inp => inp.value.toLowerCase());
+
+          rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            let show = true;
+
+            filters.forEach((val, i) => {
+              if (val && cells[i] && !cells[i].textContent.toLowerCase().includes(val)) {
+                show = false;
+              }
+            });
+
+            row.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    }
+
+    initDraggableHeaders() {
+      const headers = this.table.querySelectorAll('thead th');
+      headers.forEach((th) => {
+        th.addEventListener('dragstart', this.onDragStart.bind(this));
+        th.addEventListener('dragover', this.onDragOver.bind(this));
+        th.addEventListener('drop', this.onDrop.bind(this));
+        th.addEventListener('dragend', this.onDragEnd.bind(this));
+        th.addEventListener('click', this.onHeaderClick.bind(this));
+      });
+    }
+
+    onDragStart(e) {
+      const headers = Array.from(e.target.parentNode.children);
+      this.startIndex = headers.indexOf(e.target);
+      e.target.classList.add('dragging');
+    }
+
+    onDragOver(e) {
+      e.preventDefault();
+    }
+
+    onDrop(e) {
+      const headers = Array.from(e.target.parentNode.children);
+      const endIndex = headers.indexOf(e.target);
+      if (this.startIndex !== endIndex) {
+        this.moveColumn(this.startIndex, endIndex);
+        this.resetSortIcons();
+      }
+      this.initDraggableHeaders();
+    }
+
+    onDragEnd(e) {
+      e.target.classList.remove('dragging');
+    }
+
+    moveColumn(fromIndex, toIndex) {
+      for (const row of this.table.rows) {
+        const cells = row.cells;
+        const fromCell = cells[fromIndex];
+        const toCell = cells[toIndex];
+        if (fromIndex < toIndex) {
+          row.insertBefore(fromCell, toCell.nextSibling);
+        } else {
+          row.insertBefore(fromCell, toCell);
+        }
+      }
+    }
+
+    onHeaderClick(e) {
+      if (e.target.tagName === 'I') return;
+      const th = e.currentTarget;
+      const headers = Array.from(th.parentNode.children);
+      const index = headers.indexOf(th);
+      const currentSort = this.sortState[index] === 'asc' ? 'desc' : 'asc';
+      this.sortColumn(index, currentSort);
+      this.updateSortIcons(index, currentSort);
+      this.sortState = {};
+      this.sortState[index] = currentSort;
+    }
+
+    sortColumn(index, direction) {
+      const tbody = this.table.querySelector('tbody');
+      const rows = Array.from(tbody.rows);
+
+      rows.sort((a, b) => {
+        const valA = a.cells[index].textContent.trim();
+        const valB = b.cells[index].textContent.trim();
+        const numA = parseFloat(valA), numB = parseFloat(valB);
+        const isNumeric = !isNaN(numA) && !isNaN(numB);
+        return isNumeric
+          ? (direction === 'asc' ? numA - numB : numB - numA)
+          : (direction === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA));
+      });
+
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
+    updateSortIcons(activeIndex, direction) {
+      const headers = this.table.querySelectorAll('thead th');
+      headers.forEach((th, i) => {
+        const icon = th.querySelector('.sort-icon');
+        if (icon) {
+          icon.className = 'sort-icon fas';
+          if (i === activeIndex) {
+            icon.classList.add(direction === 'asc' ? 'fa-sort-up' : 'fa-sort-down');
+          }
+        }
+      });
+    }
+
+    resetSortIcons() {
+      this.table.querySelectorAll('.sort-icon').forEach(icon => {
+        icon.className = 'sort-icon fas';
+      });
+    }
+
+    bindToggleEvents() {
+      this.columnBtn.addEventListener('click', () => {
+        if (!this.columnPanel.hasChildNodes()) {
+          this.generateCheckboxes();
+        }
+        this.columnPanel.style.display = this.columnPanel.style.display === 'none' ? 'block' : 'none';
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!this.columnBtn.contains(e.target) && !this.columnPanel.contains(e.target)) {
+          this.columnPanel.style.display = 'none';
+        }
+      });
+
+      this.filterBtn.addEventListener('click', () => {
+        const filterRow = this.table.querySelector('#filterRow');
+        if (!filterRow) {
+          this.enhanceHeaders();
+          this.initFilterEvents();
+        }
+        const isHidden = getComputedStyle(filterRow).display === 'none';
+        filterRow.style.display = isHidden ? 'table-row' : 'none';
+      });
+    }
+  }
+
+  // Auto-init untuk semua table dengan class "smart-table"
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('table.smart-table').forEach(table => new SmartTable(table));
+  });
+</script> -->
+
+</body>
+</html>
