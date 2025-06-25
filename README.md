@@ -1,6 +1,7 @@
 # Smart Table
 
-The ```.smart-table``` class is used to create a user-friendly and easy-to-use report table view. Just by adding ```class = "smart-table"``` to ```<table>``` , adding ```class="draggable sortable filterable"``` in ```<th>``` you can use it. Like dragging and dropping columns, showing or hiding columns, filtering data per column, exporting to excel, and we can customize the columns according to their contents.<br>Some buttons use icon buttons from [w3school](http://w3schools.com/icons/) and excel export CDN library from [jsDelivr](https://www.jsdelivr.com/). So make sure you add them in the meta header.
+The ```.smart-table``` class is used to create a user-friendly and easy-to-use report table view. Just by adding ```class = "smart-table"``` to ```<table>``` , adding ```class="draggable sortable filterable"``` in ```<th>``` you can use it. Like dragging and dropping columns, showing or hiding columns, filtering data per column, exporting to excel, and we can customize the columns according to their contents.<br>Some buttons use icon buttons from [w3school](http://w3schools.com/icons/) and excel export CDN library from [jsDelivr](https://www.jsdelivr.com/). So make sure you add them in the meta header.<br>
+You can try it [here](https://galihkar.github.io/smart-table/index.html)
 
 --------------------------------------
 # Script
