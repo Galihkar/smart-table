@@ -4,57 +4,58 @@
   <meta charset="UTF-8" />
   <title>Table Drag, Drop & Sort</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://github.com/Galihkar/smart-table/blob/main/smart-table.css">
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <link href="https://github.com/Galihkar/smart-table/blob/main/smart-table.css" rel="stylesheet">
   <script src="https://github.com/Galihkar/smart-table/blob/main/smart-table.js"></script>
 </head>
 <body>
   <table class="smart-table">
     <thead>
-      <tr>
-        <th class="draggable sortable filterable">No</th>
-        <th class="draggable sortable filterable">NIK</th>
-        <th class="draggable sortable filterable">Nama</th>
-        <th class="draggable sortable filterable">Jenis Kelamin</th>
-        <th class="draggable sortable filterable">Tanggal Lahir</th>
-        <th class="draggable sortable filterable">Tempat Lahir</th>
-        <th class="draggable sortable filterable">Alamat</th>
-        <th class="draggable sortable filterable">Kota</th>
-        <th class="draggable sortable filterable">Provinsi</th>
-        <th class="draggable sortable filterable">Kode Pos</th>
-        <th class="draggable sortable filterable">Telepon</th>
-        <th class="draggable sortable filterable">Email</th>
-        <th class="draggable sortable filterable">Status</th>
-        <th class="draggable sortable filterable">Pendidikan Terakhir</th>
-        <th class="draggable sortable filterable">Sekolah</th>
-        <th class="draggable sortable filterable">Jurusan</th>
-        <th class="draggable sortable filterable">Tahun Masuk</th>
-        <th class="draggable sortable filterable">Tahun Lulus</th>
-        <th class="draggable sortable filterable">IPK</th>
-        <th class="draggable sortable filterable">Pekerjaan</th>
-      </tr>
+<tr>
+  <th class="draggable sortable filterable">No</th>
+  <th class="draggable sortable filterable">ID Number</th>
+  <th class="draggable sortable filterable">Name</th>
+  <th class="draggable sortable filterable">Gender</th>
+  <th class="draggable sortable filterable">Date of Birth</th>
+  <th class="draggable sortable filterable">Place of Birth</th>
+  <th class="draggable sortable filterable">Address</th>
+  <th class="draggable sortable filterable">City</th>
+  <th class="draggable sortable filterable">Province</th>
+  <th class="draggable sortable filterable">Postal Code</th>
+  <th class="draggable sortable filterable">Phone</th>
+  <th class="draggable sortable filterable">Email</th>
+  <th class="draggable sortable filterable">Marital Status</th>
+  <th class="draggable sortable filterable">Last Education</th>
+  <th class="draggable sortable filterable">School/University</th>
+  <th class="draggable sortable filterable">Major</th>
+  <th class="draggable sortable filterable">Year of Entry</th>
+  <th class="draggable sortable filterable">Year of Graduation</th>
+  <th class="draggable sortable filterable">GPA</th>
+  <th class="draggable sortable filterable">Occupation</th>
+</tr>
+
     </thead>
 <tbody>
-  <tr><td>1</td><td>3201010101010001</td><td>Andi Wijaya</td><td>Laki-laki</td><td>1990-01-15</td><td>Bandung</td><td>Jl. Melati No. 1</td><td>Bandung</td><td>Jawa Barat</td><td>40123</td><td>081234567890</td><td>andi@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Padjadjaran</td><td>Teknik Informatika</td><td>2008</td><td>2012</td><td>3.45</td><td>Programmer</td></tr>
-  <tr><td>2</td><td>3201010101010002</td><td>Siti Aminah</td><td>Perempuan</td><td>1992-03-20</td><td>Jakarta</td><td>Jl. Mawar No. 2</td><td>Jakarta</td><td>DKI Jakarta</td><td>10230</td><td>081298765432</td><td>siti@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Indonesia</td><td>Manajemen</td><td>2010</td><td>2014</td><td>3.80</td><td>Analis Bisnis</td></tr>
-  <tr><td>3</td><td>3201010101010003</td><td>Rudi Hartono</td><td>Laki-laki</td><td>1988-07-11</td><td>Surabaya</td><td>Jl. Kenanga No. 3</td><td>Surabaya</td><td>Jawa Timur</td><td>60292</td><td>081212345678</td><td>rudi@example.com</td><td>Menikah</td><td>S1</td><td>ITS Surabaya</td><td>Teknik Sipil</td><td>2006</td><td>2010</td><td>3.60</td><td>Kontraktor</td></tr>
-  <tr><td>4</td><td>3201010101010004</td><td>Lina Marlina</td><td>Perempuan</td><td>1995-05-30</td><td>Medan</td><td>Jl. Anggrek No. 4</td><td>Medan</td><td>Sumatera Utara</td><td>20111</td><td>082134567891</td><td>lina@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Sumatera Utara</td><td>Akuntansi</td><td>2013</td><td>2017</td><td>3.75</td><td>Akuntan</td></tr>
-  <tr><td>5</td><td>3201010101010005</td><td>Joko Santoso</td><td>Laki-laki</td><td>1991-09-25</td><td>Semarang</td><td>Jl. Cendana No. 5</td><td>Semarang</td><td>Jawa Tengah</td><td>50123</td><td>085634567890</td><td>joko@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Diponegoro</td><td>Ilmu Hukum</td><td>2009</td><td>2013</td><td>3.40</td><td>Pengacara</td></tr>
-  <tr><td>6</td><td>3201010101010006</td><td>Dewi Kusuma</td><td>Perempuan</td><td>1993-02-14</td><td>Yogyakarta</td><td>Jl. Teratai No. 6</td><td>Yogyakarta</td><td>DI Yogyakarta</td><td>55281</td><td>087823456789</td><td>dewi@example.com</td><td>Lajang</td><td>S2</td><td>UGM</td><td>Pendidikan</td><td>2011</td><td>2015</td><td>3.90</td><td>Dosen</td></tr>
-  <tr><td>7</td><td>3201010101010007</td><td>Budi Prasetyo</td><td>Laki-laki</td><td>1987-06-18</td><td>Bekasi</td><td>Jl. Flamboyan No. 7</td><td>Bekasi</td><td>Jawa Barat</td><td>17112</td><td>081923456780</td><td>budi@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Gunadarma</td><td>Sistem Informasi</td><td>2005</td><td>2009</td><td>3.50</td><td>IT Support</td></tr>
-  <tr><td>8</td><td>3201010101010008</td><td>Maria Kristina</td><td>Perempuan</td><td>1994-11-02</td><td>Manado</td><td>Jl. Dahlia No. 8</td><td>Manado</td><td>Sulawesi Utara</td><td>95112</td><td>085812345678</td><td>maria@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Sam Ratulangi</td><td>Psikologi</td><td>2012</td><td>2016</td><td>3.67</td><td>HRD</td></tr>
-  <tr><td>9</td><td>3201010101010009</td><td>Agus Salim</td><td>Laki-laki</td><td>1989-12-10</td><td>Makassar</td><td>Jl. Sawo No. 9</td><td>Makassar</td><td>Sulawesi Selatan</td><td>90231</td><td>082198765432</td><td>agus@example.com</td><td>Menikah</td><td>S2</td><td>Universitas Hasanuddin</td><td>Administrasi Publik</td><td>2007</td><td>2011</td><td>3.55</td><td>PNS</td></tr>
-  <tr><td>10</td><td>3201010101010010</td><td>Nur Aini</td><td>Perempuan</td><td>1996-08-22</td><td>Palembang</td><td>Jl. Nusa Indah No. 10</td><td>Palembang</td><td>Sumatera Selatan</td><td>30139</td><td>081345678912</td><td>nuraini@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Sriwijaya</td><td>Kedokteran</td><td>2014</td><td>2018</td><td>3.95</td><td>Dokter</td></tr>
-  <tr><td>11</td><td>3201010101010011</td><td>Hendra Kurniawan</td><td>Laki-laki</td><td>1990-04-17</td><td>Tangerang</td><td>Jl. Cemara No. 11</td><td>Tangerang</td><td>Banten</td><td>15111</td><td>081789012345</td><td>hendra@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Pelita Harapan</td><td>Desain Komunikasi Visual</td><td>2008</td><td>2012</td><td>3.60</td><td>Desainer Grafis</td></tr>
-  <tr><td>12</td><td>3201010101010012</td><td>Ayu Lestari</td><td>Perempuan</td><td>1993-10-05</td><td>Depok</td><td>Jl. Sakura No. 12</td><td>Depok</td><td>Jawa Barat</td><td>16411</td><td>082234567891</td><td>ayu@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Indonesia</td><td>Ilmu Komunikasi</td><td>2011</td><td>2015</td><td>3.85</td><td>Public Relations</td></tr>
-  <tr><td>13</td><td>3201010101010013</td><td>Fajar Pratama</td><td>Laki-laki</td><td>1985-01-20</td><td>Solo</td><td>Jl. Merpati No. 13</td><td>Solo</td><td>Jawa Tengah</td><td>57142</td><td>083134567890</td><td>fajar@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Sebelas Maret</td><td>Ekonomi</td><td>2003</td><td>2007</td><td>3.40</td><td>Wirausaha</td></tr>
-  <tr><td>14</td><td>3201010101010014</td><td>Melati Sari</td><td>Perempuan</td><td>1997-07-07</td><td>Pontianak</td><td>Jl. Rajawali No. 14</td><td>Pontianak</td><td>Kalimantan Barat</td><td>78123</td><td>085734567891</td><td>melati@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Tanjungpura</td><td>Ilmu Hukum</td><td>2015</td><td>2019</td><td>3.70</td><td>Legal Officer</td></tr>
-  <tr><td>15</td><td>3201010101010015</td><td>Rian Aditya</td><td>Laki-laki</td><td>1990-06-30</td><td>Bogor</td><td>Jl. Elang No. 15</td><td>Bogor</td><td>Jawa Barat</td><td>16128</td><td>081556789012</td><td>rian@example.com</td><td>Menikah</td><td>S1</td><td>IPB University</td><td>Agroteknologi</td><td>2008</td><td>2012</td><td>3.55</td><td>Petani Modern</td></tr>
-  <tr><td>16</td><td>3201010101010016</td><td>Salsa Maharani</td><td>Perempuan</td><td>1998-03-01</td><td>Padang</td><td>Jl. Belimbing No. 16</td><td>Padang</td><td>Sumatera Barat</td><td>25113</td><td>085612345678</td><td>salsa@example.com</td><td>Lajang</td><td>S1</td><td>Universitas Andalas</td><td>Ilmu Sosial</td><td>2016</td><td>2020</td><td>3.90</td><td>Peneliti Sosial</td></tr>
-  <tr><td>17</td><td>3201010101010017</td><td>Tommy Gunawan</td><td>Laki-laki</td><td>1986-12-24</td><td>Batam</td><td>Jl. Durian No. 17</td><td>Batam</td><td>Kepulauan Riau</td><td>29432</td><td>082167890123</td><td>tommy@example.com</td><td>Menikah</td><td>S1</td><td>Politeknik Negeri Batam</td><td>Teknik Elektro</td><td>2004</td><td>2008</td><td>3.35</td><td>Teknisi</td></tr>
-  <tr><td>18</td><td>3201010101010018</td><td>Ani Septiani</td><td>Perempuan</td><td>1992-09-09</td><td>Palangkaraya</td><td>Jl. Rambutan No. 18</td><td>Palangkaraya</td><td>Kalimantan Tengah</td><td>73112</td><td>085790123456</td><td>ani@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Gadjah Mada</td><td>Antropologi</td><td>2010</td><td>2014</td><td>3.88</td><td>Dosen</td></tr>
-  <tr><td>19</td><td>3201010101010019</td><td>Denny Saputra</td><td>Laki-laki</td><td>1984-04-04</td><td>Cirebon</td><td>Jl. Jambu No. 19</td><td>Cirebon</td><td>Jawa Barat</td><td>45111</td><td>083456789012</td><td>denny@example.com</td><td>Menikah</td><td>S1</td><td>Universitas Swadaya Gunung Jati</td><td>Teknik Mesin</td><td>2002</td><td>2006</td><td>3.50</td><td>Engineer</td></tr>
-  <tr><td>20</td><td>3201010101010020</td><td>Nina Rahmawati</td><td>Perempuan</td><td>1991-01-01</td><td>Banda Aceh</td><td>Jl. Manggis No. 20</td><td>Banda Aceh</td><td>Aceh</td><td>23111</td><td>085634789012</td><td>nina@example.com</td><td>Lajang</td><td>S2</td><td>Universitas Syiah Kuala</td><td>Farmasi</td><td>2009</td><td>2013</td><td>3.92</td><td>Apoteker</td></tr>
+  <tr><td>1</td><td>3201010101010001</td><td>Andi Wijaya</td><td>Male</td><td>1990-01-15</td><td>Bandung</td><td>Jl. Melati No. 1</td><td>Bandung</td><td>West Java</td><td>40123</td><td>081234567890</td><td>andi@example.com</td><td>Married</td><td>Bachelor's</td><td>Padjadjaran University</td><td>Informatics Engineering</td><td>2008</td><td>2012</td><td>3.45</td><td>Programmer</td></tr>
+  <tr><td>2</td><td>3201010101010002</td><td>Siti Aminah</td><td>Female</td><td>1992-03-20</td><td>Jakarta</td><td>Jl. Mawar No. 2</td><td>Jakarta</td><td>DKI Jakarta</td><td>10230</td><td>081298765432</td><td>siti@example.com</td><td>Single</td><td>Master's</td><td>University of Indonesia</td><td>Management</td><td>2010</td><td>2014</td><td>3.80</td><td>Business Analyst</td></tr>
+  <tr><td>3</td><td>3201010101010003</td><td>Rudi Hartono</td><td>Male</td><td>1988-07-11</td><td>Surabaya</td><td>Jl. Kenanga No. 3</td><td>Surabaya</td><td>East Java</td><td>60292</td><td>081212345678</td><td>rudi@example.com</td><td>Married</td><td>Bachelor's</td><td>ITS Surabaya</td><td>Civil Engineering</td><td>2006</td><td>2010</td><td>3.60</td><td>Contractor</td></tr>
+  <tr><td>4</td><td>3201010101010004</td><td>Lina Marlina</td><td>Female</td><td>1995-05-30</td><td>Medan</td><td>Jl. Anggrek No. 4</td><td>Medan</td><td>North Sumatra</td><td>20111</td><td>082134567891</td><td>lina@example.com</td><td>Single</td><td>Bachelor's</td><td>University of North Sumatra</td><td>Accounting</td><td>2013</td><td>2017</td><td>3.75</td><td>Accountant</td></tr>
+  <tr><td>5</td><td>3201010101010005</td><td>Joko Santoso</td><td>Male</td><td>1991-09-25</td><td>Semarang</td><td>Jl. Cendana No. 5</td><td>Semarang</td><td>Central Java</td><td>50123</td><td>085634567890</td><td>joko@example.com</td><td>Married</td><td>Bachelor's</td><td>Diponegoro University</td><td>Law</td><td>2009</td><td>2013</td><td>3.40</td><td>Lawyer</td></tr>
+  <tr><td>6</td><td>3201010101010006</td><td>Dewi Kusuma</td><td>Female</td><td>1993-02-14</td><td>Yogyakarta</td><td>Jl. Teratai No. 6</td><td>Yogyakarta</td><td>DI Yogyakarta</td><td>55281</td><td>087823456789</td><td>dewi@example.com</td><td>Single</td><td>Master's</td><td>Gadjah Mada University</td><td>Education</td><td>2011</td><td>2015</td><td>3.90</td><td>Lecturer</td></tr>
+  <tr><td>7</td><td>3201010101010007</td><td>Budi Prasetyo</td><td>Male</td><td>1987-06-18</td><td>Bekasi</td><td>Jl. Flamboyan No. 7</td><td>Bekasi</td><td>West Java</td><td>17112</td><td>081923456780</td><td>budi@example.com</td><td>Married</td><td>Bachelor's</td><td>Gunadarma University</td><td>Information Systems</td><td>2005</td><td>2009</td><td>3.50</td><td>IT Support</td></tr>
+  <tr><td>8</td><td>3201010101010008</td><td>Maria Kristina</td><td>Female</td><td>1994-11-02</td><td>Manado</td><td>Jl. Dahlia No. 8</td><td>Manado</td><td>North Sulawesi</td><td>95112</td><td>085812345678</td><td>maria@example.com</td><td>Single</td><td>Bachelor's</td><td>Sam Ratulangi University</td><td>Psychology</td><td>2012</td><td>2016</td><td>3.67</td><td>HRD</td></tr>
+  <tr><td>9</td><td>3201010101010009</td><td>Agus Salim</td><td>Male</td><td>1989-12-10</td><td>Makassar</td><td>Jl. Sawo No. 9</td><td>Makassar</td><td>South Sulawesi</td><td>90231</td><td>082198765432</td><td>agus@example.com</td><td>Married</td><td>Master's</td><td>Hasanuddin University</td><td>Public Administration</td><td>2007</td><td>2011</td><td>3.55</td><td>Civil Servant</td></tr>
+  <tr><td>10</td><td>3201010101010010</td><td>Nur Aini</td><td>Female</td><td>1996-08-22</td><td>Palembang</td><td>Jl. Nusa Indah No. 10</td><td>Palembang</td><td>South Sumatra</td><td>30139</td><td>081345678912</td><td>nuraini@example.com</td><td>Single</td><td>Bachelor's</td><td>Sriwijaya University</td><td>Medicine</td><td>2014</td><td>2018</td><td>3.95</td><td>Doctor</td></tr>
+  <tr><td>11</td><td>3201010101010011</td><td>Hendra Kurniawan</td><td>Male</td><td>1990-04-17</td><td>Tangerang</td><td>Jl. Cemara No. 11</td><td>Tangerang</td><td>Banten</td><td>15111</td><td>081789012345</td><td>hendra@example.com</td><td>Married</td><td>Bachelor's</td><td>Pelita Harapan University</td><td>Visual Communication Design</td><td>2008</td><td>2012</td><td>3.60</td><td>Graphic Designer</td></tr>
+  <tr><td>12</td><td>3201010101010012</td><td>Ayu Lestari</td><td>Female</td><td>1993-10-05</td><td>Depok</td><td>Jl. Sakura No. 12</td><td>Depok</td><td>West Java</td><td>16411</td><td>082234567891</td><td>ayu@example.com</td><td>Single</td><td>Master's</td><td>University of Indonesia</td><td>Communication Science</td><td>2011</td><td>2015</td><td>3.85</td><td>Public Relations</td></tr>
+  <tr><td>13</td><td>3201010101010013</td><td>Fajar Pratama</td><td>Male</td><td>1985-01-20</td><td>Solo</td><td>Jl. Merpati No. 13</td><td>Solo</td><td>Central Java</td><td>57142</td><td>083134567890</td><td>fajar@example.com</td><td>Married</td><td>Bachelor's</td><td>Sebelas Maret University</td><td>Economics</td><td>2003</td><td>2007</td><td>3.40</td><td>Entrepreneur</td></tr>
+  <tr><td>14</td><td>3201010101010014</td><td>Melati Sari</td><td>Female</td><td>1997-07-07</td><td>Pontianak</td><td>Jl. Rajawali No. 14</td><td>Pontianak</td><td>West Kalimantan</td><td>78123</td><td>085734567891</td><td>melati@example.com</td><td>Single</td><td>Bachelor's</td><td>Tanjungpura University</td><td>Law</td><td>2015</td><td>2019</td><td>3.70</td><td>Legal Officer</td></tr>
+  <tr><td>15</td><td>3201010101010015</td><td>Rian Aditya</td><td>Male</td><td>1990-06-30</td><td>Bogor</td><td>Jl. Elang No. 15</td><td>Bogor</td><td>West Java</td><td>16128</td><td>081556789012</td><td>rian@example.com</td><td>Married</td><td>Bachelor's</td><td>IPB University</td><td>Agrotechnology</td><td>2008</td><td>2012</td><td>3.55</td><td>Modern Farmer</td></tr>
+  <tr><td>16</td><td>3201010101010016</td><td>Salsa Maharani</td><td>Female</td><td>1998-03-01</td><td>Padang</td><td>Jl. Belimbing No. 16</td><td>Padang</td><td>West Sumatra</td><td>25113</td><td>085612345678</td><td>salsa@example.com</td><td>Single</td><td>Bachelor's</td><td>Andalas University</td><td>Social Sciences</td><td>2016</td><td>2020</td><td>3.90</td><td>Social Researcher</td></tr>
+  <tr><td>17</td><td>3201010101010017</td><td>Tommy Gunawan</td><td>Male</td><td>1986-12-24</td><td>Batam</td><td>Jl. Durian No. 17</td><td>Batam</td><td>Riau Islands</td><td>29432</td><td>082167890123</td><td>tommy@example.com</td><td>Married</td><td>Bachelor's</td><td>Batam State Polytechnic</td><td>Electrical Engineering</td><td>2004</td><td>2008</td><td>3.35</td><td>Technician</td></tr>
+  <tr><td>18</td><td>3201010101010018</td><td>Ani Septiani</td><td>Female</td><td>1992-09-09</td><td>Palangkaraya</td><td>Jl. Rambutan No. 18</td><td>Palangkaraya</td><td>Central Kalimantan</td><td>73112</td><td>085790123456</td><td>ani@example.com</td><td>Single</td><td>Master's</td><td>Gadjah Mada University</td><td>Anthropology</td><td>2010</td><td>2014</td><td>3.88</td><td>Lecturer</td></tr>
+  <tr><td>19</td><td>3201010101010019</td><td>Denny Saputra</td><td>Male</td><td>1984-04-04</td><td>Cirebon</td><td>Jl. Jambu No. 19</td><td>Cirebon</td><td>West Java</td><td>45111</td><td>083456789012</td><td>denny@example.com</td><td>Married</td><td>Bachelor's</td><td>Swadaya Gunung Jati University</td><td>Mechanical Engineering</td><td>2002</td><td>2006</td><td>3.50</td><td>Engineer</td></tr>
+  <tr><td>20</td><td>3201010101010020</td><td>Nina Rahmawati</td><td>Female</td><td>1991-01-01</td><td>Banda Aceh</td><td>Jl. Manggis No. 20</td><td>Banda Aceh</td><td>Aceh</td><td>23111</td><td>085634789012</td><td>nina@example.com</td><td>Single</td><td>Master's</td><td>Syiah Kuala University</td><td>Pharmacy</td><td>2009</td><td>2013</td><td>3.92</td><td>Pharmacist</td></tr>
 </tbody>
   </table>
 </body>
